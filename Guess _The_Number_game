@@ -1,0 +1,44 @@
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class Guess_The_Number {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        Random rnd = new Random();
+
+        int minValue = 1;
+        int maxValue = 100;
+        int generatedNumber = rnd.nextInt(maxValue - minValue + 1) + minValue;
+
+        int maxAttempts = 10;
+        int attempts = 0;
+        int score = 0;
+
+        System.out.println("Welcome to Guess the Number!");
+        System.out.println("I've picked a number between " + minValue + " and " + maxValue);
+
+        while (attempts < maxAttempts) {
+            System.out.print("Enter your guess: ");
+            int userGuess = sc.nextInt();
+            attempts++;
+
+            if (userGuess == generatedNumber) {
+                System.out.println("You've guessed the number in " + attempts + " attempts.");
+                score = maxAttempts - attempts + 1;
+                System.out.println("Your score: " + score);
+                break;
+            } else if (userGuess < generatedNumber) {
+                System.out.println("The number is greater than this");
+            } else {
+                System.out.println("The number is lesser than this");
+            }
+        }
+
+        if (attempts == maxAttempts) {
+            System.out.println("Sorry, you've used all your attempts. The number was: " + generatedNumber);
+        }
+
+    }
+}
